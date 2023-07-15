@@ -33,20 +33,28 @@ module.exports = {
       console.log(error.response.data);
     }
   },
+  getCreate: async (req, res) => {
+    try {
+      return res.render('post-create');
+    } catch (error) {
+      console.log(error.response.data);
+    }
+  },
   add: async (req, res) => {
     try {
       const {
         title, content, category, status,
       } = req.body;
 
-      const res = await api.post('articles/', {
+      const resApi = await api.post('articles/', {
         title,
         content,
         category,
         status,
       });
+      res.redirect('/1');
     } catch (error) {
-      console.log(error.response.data);
+      console.log(error);
     }
   },
   update: async (req, res) => {
